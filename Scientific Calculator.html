@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scientific Calculator</title>
+    <style type="text/css">
+        .calculator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 100px;
+            border: 2px solid #000;
+            padding: 10px;
+            border-radius: 10px;
+            height: 400px;
+            width: 548px;
+            margin: auto;
+            background-color: #0a1b35;
+            box-shadow: 10px 10px 26px 0px rgba(0,0,0,0.75);
+        }
+
+        .display-box {
+        font-weight: bold;
+        font-size: 24px;
+        background-color: #66CC99; 
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        height: 60px;
+        width: 400px;
+        text-align: right;
+        padding: 5px;
+        margin-bottom: 20px;
+    }
+
+
+
+        .btn-row {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .btn-row input[type="button"] {
+            font-family: 'Arial', sans-serif;
+            background-color: black;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            width: 70px;
+            height: 50px;
+            outline: none;
+            font-size: 16px;
+            font-weight: bold;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .btn-row input[type="button"]:hover {
+            background-color: #171917;
+        }
+        .btn-row input[type="button"][value="AC"] {
+        background-color: red;
+    }
+    .btn-row input[type="button"][value="="] {
+        width: 140px;
+        background-color: green;
+    }
+
+        .btn-row input[type="button"]:active {
+            background-color: sienna;
+            box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" class="display-box" id="result" disabled>
+        <div class="btn-row">
+            <input type="button" value="AC" onclick="cleanScreen()">
+            <input type="button" value="sin" onclick="display('sin')">
+            <input type="button" value="cos" onclick="display('cos')">
+            <input type="button" value="tan" onclick="display('tan')">
+            <input type="button" value="(" onclick="display('(')">
+            <input type="button" value=")" onclick="display(')')">
+            <input type="button" value="<=" onclick="display('<=')">
+        </div>
+        <div class="btn-row">
+            <input type="button" value="7" onclick="display('7')">
+            <input type="button" value="8" onclick="display('8')">
+            <input type="button" value="9" onclick="display('9')">
+            <input type="button" value="*" onclick="display('*')">
+            <input type="button" value="°" onclick="display('°')">
+            <input type="button" value="log" onclick="display('log')">
+            <input type="button" value="rad" onclick="display('rad')">
+        </div>
+        <div class="btn-row">
+            <input type="button" value="4" onclick="display('4')">
+            <input type="button" value="5" onclick="display('5')">
+            <input type="button" value="6" onclick="display('6')">
+            <input type="button" value="-" onclick="display('-')">
+            <input type="button" value="In" onclick="display('In')">
+            <input type="button" value="x!" onclick="display('x!')">
+            <input type="button" value="√" onclick="calculateSquareRoot()">
+        </div>
+        <div class="btn-row">
+            <input type="button" value="1" onclick="display('1')">
+            <input type="button" value="2" onclick="display('2')">
+            <input type="button" value="3" onclick="display('3')">
+            <input type="button" value="+" onclick="display('+')">
+            <input type="button" value="π" onclick="display('π')">
+            <input type="button" value="EXP" onclick="display('EXP')">
+            <input type="button" value="x²" onclick="display('x²')">
+        </div>
+        <div class="btn-row">
+            <input type="button" value="." onclick="display('.')">
+            <input type="button" value="0" onclick="display('0')">
+            <input type="button" value="/" onclick="display('/')">
+            <input type="button" value="%" onclick="display('%')">
+            <input type="button" value="=" onclick="calculate()">
+            <input type="button" value="Inv" onclick="display('Inv')">
+        </div>
+    </div>
+    <footer style="text-align: center; margin-top: 30px;">
+        <p style="font-size: 14px; color: #999;">&copy; 2023 All rights reserved. || Created by <a href="https://www.instagram.com/bhanu__bharwad" target="_blank">Bhanu ||</a></p>
+    </footer>
+
+    <script type="text/javascript">
+        function display(value) {
+            document.getElementById('result').value += value;
+        }
+    
+        function cleanScreen() {
+            document.getElementById('result').value = "";
+        }
+    
+        function calculate() {
+            var x = document.getElementById('result').value;
+            var z = eval(x);
+            
+            if (z.toString().length > 10) {
+                z = z.toExponential(5);
+            }
+            
+            document.getElementById('result').value = z;
+        }
+        
+        function calculateSquareRoot() {
+            var x = document.getElementById('result').value;
+            var z = Math.sqrt(eval(x));
+            
+            if (z.toString().length > 10) {
+                z = z.toExponential(5);
+            }
+            
+            document.getElementById('result').value = z;
+        }
+        
+        function calculateSin() {
+            var x = document.getElementById('result').value;
+            var z = Math.sin(eval(x));
+            
+            if (z.toString().length > 10) {
+                z = z.toExponential(5);
+            }
+            
+            document.getElementById('result').value = z;
+        }
+        
+        function calculateCos() {
+            var x = document.getElementById('result').value;
+            var z = Math.cos(eval(x));
+            
+            if (z.toString().length > 10) {
+                z = z.toExponential(5);
+            }
+            
+            document.getElementById('result').value = z;
+        }
+        
+        function calculateTan() {
+            var x = document.getElementById('result').value;
+            var z = Math.tan(eval(x));
+            
+            if (z.toString().length > 10) {
+                z = z.toExponential(5);
+            }
+            
+            document.getElementById('result').value = z;
+        }
+    </script>  
+     
+</body>
+</html>
